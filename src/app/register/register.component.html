@@ -1,0 +1,74 @@
+<form (ngSubmit)="regist(myForm)" [(ngModel)]="form"  #myForm="ngForm">
+        <mat-form-field class="example-full-width">
+        <mat-label for="name">הכנס שם</mat-label>
+        <input name="name" id="name" required matInput pattern="[a-z A-Z א-ת]+" placeholder="ישראל" #name="ngModel"  [(ngModel)]="user.firstName">
+        <p class="error" *ngIf="name.touched&&name.errors&&name.errors['required']">זהו שדה חובה</p>
+        <p  class="error"*ngIf="name.touched &&name.errors&&name.errors['pattern']">שם פרטי אמור להכיל אותיות בלבד</p>
+      </mat-form-field>
+
+           <mat-form-field class="example-full-width">
+        <mat-label for="familyName">הכנס שם משפחה</mat-label>
+        <input  type="text" matInput name="familyName" id="familyName" required pattern="[a-z A-Z א-ת]+"  placeholder="ישראלי" [(ngModel)]="user.familyName" #familyName="ngModel" >
+        <p class="error" *ngIf="familyName.touched&&familyName.errors&&familyName.errors['required']">זהו שדה חובה</p>
+        <p  class="error"*ngIf="familyName.touched &&familyName.errors&&familyName.errors['pattern']">שם פרטי אמור להכיל אותיות בלבד</p>
+      </mat-form-field>
+
+       <mat-form-field class="example-full-width"> 
+          <mat-label for="tz">הכנס תעודת זהות</mat-label>
+          <input matInput type="text" name="tz" id="tz" required pattern="[0-9]+" minlength="9" maxlength="9" placeholder="123456789" [(ngModel)]="user.tz" #tz="ngModel" >
+          <p class="error" *ngIf="tz.touched&&tz.errors&&tz.errors['required']">זהו שדה חובה</p>
+          <p class="error"*ngIf="tz.touched  &&tz.errors&&tz.errors['pattern']">תעודת זהות אמורה להכיל מספרים בלבד</p>
+          <p  class="error"*ngIf="tz.touched &&tz.errors&&(tz.errors['minlength']|| tz.errors['tz.errors.maxlength'])">תעודת זהות אמורה להכיל 9 מספרים בלבד</p>
+        </mat-form-field>
+        <mat-form-field class="example-full-width"> 
+          <mat-label for="dateOfBirth">הכנס תאריך לידה</mat-label>
+          <input type="date" matInput name="dateOfBirth" id="dateOfBirth" required   [(ngModel)]="user.dateOfBirth" #dateOfBirth="ngModel" >
+          <p class="error"*ngIf="dateOfBirth.invalid" &&(dateOfBirth.dirty||dateOfBirth.touched))>בחר תאריך</p>
+          <p class="error" *ngIf="dateOfBirth.touched&&dateOfBirth.errors&&dateOfBirth.errors['required']">זהו שדה חובה</p>
+        </mat-form-field>
+      
+<mat-form-field appearance="fill">
+  <mat-label for="gender">בחר מין</mat-label>
+  <mat-select  name="gender" id="gender" required   [(ngModel)]="user.gender" #gender="ngModel" >
+            <mat-option value="נקבה" >נקבה</mat-option>
+            <mat-option value="זכר">זכר</mat-option>
+      </mat-select>
+       <p class="error" *ngIf="gender.touched&&gender.errors&&gender.errors['required']">זהו שדה חובה</p>
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+          <mat-label for="hmo">בחר קופת חולים</mat-label>
+          <mat-select   name="hmo" id="hmo" required   [(ngModel)]="user.hmo" #hmo="ngModel" >
+            <mat-option value="מכבי" >מכבי</mat-option>
+            <mat-option value="לאומית">לאומית</mat-option>
+            <mat-option value="כללית">כללית</mat-option>
+            <mat-option value="מאוחדת">מאוחדת</mat-option>
+          </mat-select>
+          <p class="error" *ngIf="hmo.touched&&hmo.errors&&hmo.errors['required']">זהו שדה חובה</p>
+        </mat-form-field>
+      <p>מספר ילדים:{{user.children.length}}</p>
+
+    <form (ngSubmit)="addChild();myChild.reset()"  #myChild="ngForm">
+      <mat-form-field class="example-full-width"> 
+      <mat-label for="nameChild">הכנס שם</mat-label>
+      <input matInput type="text" name="nameChild" id="nameChild" required pattern="[a-z A-Z א-ת]+"  placeholder="ישראל" [(ngModel)]="child.firstName" #nameChild="ngModel" >
+      <p class="error" *ngIf="nameChild.touched&&nameChild.errors&&nameChild.errors['required']">זהו שדה חובה</p>
+      <p  class="error"*ngIf="nameChild.touched &&nameChild.errors&&nameChild.errors['pattern']">שם פרטי אמור להכיל אותיות בלבד</p>
+    </mat-form-field> 
+    
+    <mat-form-field class="example-full-width"> 
+      <mat-label for="tzChild">הכנס תעודת זהות</mat-label>
+      <input matInput type="text" name="tzChild" id="tzChild" required pattern="[0-9]+" minlength="9" maxlength="9" placeholder="123456789" [(ngModel)]="child.tz" #tzChild="ngModel" >
+      <p class="error" *ngIf="tzChild.touched&&tzChild.errors&&tzChild.errors['required']">זהו שדה חובה</p>
+      <p class="error"*ngIf="tzChild.touched  &&tzChild.errors&&tzChild.errors['pattern']">תעודת זהות אמורה להכיל מספרים בלבד</p>
+      <p  class="error"*ngIf="tzChild.touched &&tzChild.errors&&(tzChild.errors['minlength']|| tzChild.errors['tzChild.errors.maxlength'])">תעודת זהות אמורה להכיל 9 מספרים בלבד</p>
+    </mat-form-field>
+    
+    <mat-form-field class="example-full-width"> 
+      <mat-label for="dateOfBirthChild">הכנס תאריך לידה</mat-label>
+      <input matInput type="date" name="dateOfBirthChild" id="dateOfBirthChild" required   [(ngModel)]="child.dateOfBirth" #dateOfBirthChild="ngModel" >
+      <p class="error" *ngIf="dateOfBirthChild.touched&&dateOfBirthChild.errors&&dateOfBirthChild.errors['required']">זהו שדה חובה</p>
+    </mat-form-field>
+        <input type="submit" value="הוספת ילד" [disabled]="!myChild.valid">
+  </form>
+    <input type="submit" [disabled]="!myForm.valid" />
+    </form>

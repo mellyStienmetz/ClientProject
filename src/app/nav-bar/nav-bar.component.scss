@@ -1,0 +1,28 @@
+ul{
+   
+    background-color: rgb(216, 207, 207);
+   flex-direction: row;
+   justify-content: center;
+   display: flex;
+   list-style: none;
+   height: 100%;
+   margin: auto;
+   margin-right: 0px;
+   padding: 0;
+ }
+a{
+    color: rgb(17, 7, 7);
+    text-decoration: none;
+   margin-top:25%;
+   
+}
+li{
+    flex:1;
+    height: 100%;
+    margin: auto;
+    margin-right: 0px;
+  
+}
+li:hover{
+   background-color:  rgb(131, 123, 123);
+}

@@ -1,0 +1,30 @@
+
+form{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+    margin-left: 35%;
+    margin-right: 35%;
+    margin-top: 5%;
+    background-color: grey;
+}
+.error{
+    color: red;
+font-size:xx-small;
+}
+
+input{
+   width: 60%;
+   background-color: rgb(197, 185, 185);
+   border: rgb(197, 185, 185);
+  margin: 1%;
+}
+p{
+    color:white;
+}
+*{
+    color:white;
+}
+
+
